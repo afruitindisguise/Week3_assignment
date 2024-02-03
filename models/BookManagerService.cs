@@ -72,7 +72,8 @@ namespace WEEk3_Assignment.models;
       string result = "";
       foreach(Book book in Books){
          if(id == book.Id){
-            result = $"Id{book.Id}=[{book.Name}:{book.Author}:{book.Genre}]";
+            result = $"Id{book.Id} =[{book.Name}:{book.Author}:{book.Genre}]";
+            break;
          }else{
             result = "ERROR: BOOK NOT FOUND";
          }
