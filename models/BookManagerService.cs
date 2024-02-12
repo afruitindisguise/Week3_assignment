@@ -1,4 +1,5 @@
 using System.Security.Cryptography.X509Certificates;
+using System.Xml.XPath;
 
 namespace WEEk3_Assignment.models;
 /// <summary>
@@ -6,6 +7,15 @@ namespace WEEk3_Assignment.models;
 /// </summary>
  public class BookManagerService{
    public List<Book> Books { get; set; } = [];
+   private string PromptCheck(string prompt){
+      string? result = "";
+      do
+      {
+         Console.WriteLine($"Please enter {prompt}:");
+         result = Console.ReadLine();
+      } while (result == "" || result.GetType() == null);
+      return result;
+   }
    /// <summary>
    /// adds a book to the Books list 
    /// </summary>
@@ -14,22 +24,10 @@ namespace WEEk3_Assignment.models;
       string? author = "";
       string? genre = "";
       string? Id = "";
-      do{
-         Console.WriteLine("Please enter Book's name: ");
-         name = Console.ReadLine();
-      } while (name == "" || name.GetType() == null);
-      do{
-         Console.WriteLine("Please enter Book's author: ");
-         author = Console.ReadLine();
-      }while (author == "" || author.GetType() == null);
-      do{
-         Console.WriteLine("Please enter Book's genre: ");
-         genre = Console.ReadLine();
-      }while (genre == "" || genre.GetType() == null);
-      do{
-         Console.WriteLine("Please enter Book's Id: ");
-         Id = Console.ReadLine();
-      }while (Id == "" || Id.GetType() == null);
+      name = PromptCheck("Book's name");
+      author = PromptCheck("Book's author");
+      genre = PromptCheck("Book's genre");
+      Id = PromptCheck("Book's Id");
       Book book = new Book(name, author, genre, Id);
       Books.Add(book);
    }
